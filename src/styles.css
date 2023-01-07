@@ -1,0 +1,86 @@
+body {
+  background-color: antiquewhite;
+  height: 100vh;
+  margin: 0 auto;
+}
+.container {
+  background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/061/674/original/1006245.jpg?1673034335");
+  background-size: cover;
+  display: block;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 5px 15px 15px #678983;
+  margin: 20px auto;
+  padding: 30px;
+  max-width: 1000px;
+  opacity: 0.9;
+}
+.weekdays {
+  color: #181d31;
+  display: block;
+  margin: 0 auto;
+  transition: all 100ms;
+}
+.weekdays :hover {
+  background-color: #dfd3c3;
+}
+.date {
+  color: #f9f9f9;
+  position: relative;
+  bottom: -50px;
+  padding-left: 2cm;
+  font-size: 30px;
+  text-align: left;
+  list-style: none;
+}
+.location {
+  color: #f9f9f9;
+  position: relative;
+  top: 220px;
+  text-align: left;
+}
+.location h1 {
+  font-size: 70px;
+  padding-left: 2cm;
+}
+
+#cel-input {
+  font-size: 30px;
+}
+.location h2 {
+  font-size: 20px;
+  padding-left: 2cm;
+}
+#city-search {
+  font-size: 16px;
+  padding-left: 2cm;
+}
+#current-input {
+  background-color: #181d31;
+  color: white;
+  padding: 1px 6px;
+  margin: 0 auto;
+}
+#click {
+  background-color: #181d31;
+  color: white;
+}
+.rainy p {
+  font-size: 100px;
+  position: relative;
+  text-align: left;
+  top: 50px;
+}
+
+.rainy h1 {
+  color: #f9f9f9;
+  font-size: 15px;
+  text-align: left;
+  position: relative;
+  top: 270px;
+}
+.source-link {
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+}
