@@ -45,7 +45,7 @@ function displayUnit(response) {
   let cityElement = document.querySelector("#city-input");
   let descriptionElement = document.querySelector("#description-input");
   let timeElement = document.querySelector("#time-input");
-  let dayElement = document.querySelector("#day-input");
+  let iconElement = document.querySelector("#currentIcon");
 
   tempElement.innerHTML = Math.round(response.data.main.temp);
   humidityElement.innerHTML = response.data.main.humidity;
@@ -53,7 +53,13 @@ function displayUnit(response) {
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = response.data.weather[0].description;
   timeElement.innerHTML = formatDate(response.data.dt * 1000);
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/10n@2x.png`
+  );
 }
 let apiKey = "167d3b3db5a41bc679736dbad293cba1";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=mashhad&appid=${apiKey}&units=metric`;
+let city = "mashhad";
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
 axios.get(apiUrl).then(displayUnit);
