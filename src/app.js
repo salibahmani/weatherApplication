@@ -46,8 +46,8 @@ function displayUnit(response) {
   let descriptionElement = document.querySelector("#description-input");
   let timeElement = document.querySelector("#time-input");
   let iconElement = document.querySelector("#currentIcon");
-
-  tempElement.innerHTML = Math.round(response.data.main.temp);
+  celsiusTemp = response.data.main.temp;
+  tempElement.innerHTML = Math.round(celsiusTemp);
   humidityElement.innerHTML = response.data.main.humidity;
   windElement.innerHTML = Math.round(response.data.wind.speed);
   cityElement.innerHTML = response.data.name;
@@ -55,11 +55,42 @@ function displayUnit(response) {
   timeElement.innerHTML = formatDate(response.data.dt * 1000);
   iconElement.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/10n@2x.png`
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
 }
-let apiKey = "167d3b3db5a41bc679736dbad293cba1";
-let city = "mashhad";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+function search(city) {
+  let apiKey = "167d3b3db5a41bc679736dbad293cba1";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayUnit);
+}
 
-axios.get(apiUrl).then(displayUnit);
+function hadleSubmit(event) {
+  event.preventDefault();
+  let cityNameElement = document.querySelector("#search-input");
+  search(cityNameElement.value);
+}
+function displayFartemp(event) {
+  event.preventDefault();
+  let tempElement = document.querySelector("#temp-input");
+  celLink.classList.remove("active");
+  farLink.classList.add("active");
+  let fartemp = (celsiusTemp * 9) / 5 + 32;
+  tempElement.innerHTML = Math.round(fartemp);
+}
+function displayceltemp(event) {
+  event.preventDefault();
+  let tempElement = document.querySelector("#temp-input");
+  celLink.classList.add("active");
+  farLink.classList.remove("active");
+  tempElement.innerHTML = Math.round(celsiusTemp);
+}
+let celsiusTemp = null;
+let searchElement = document.querySelector("#city-search");
+searchElement.addEventListener("submit", hadleSubmit);
+
+let farLink = document.querySelector("#far-link");
+farLink.addEventListener("click", displayFartemp);
+
+let celLink = document.querySelector("#cel-link");
+celLink.addEventListener("click", displayceltemp);
+search("Mashhad");

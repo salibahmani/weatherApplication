@@ -26,15 +26,23 @@
             </ul>
             <div class="location">
               <h1>
-                <span id="temp-input">6</span>
-                <span id="cel-input"> °C </span>
+                <span id="temp-input"></span>
+                <span id="units"
+                  ><a href="#" id="cel-link" class="active">°C | </a
+                  ><a href="#" id="far-link">°F </a>
+                </span>
               </h1>
               <h2 id="city-input">City Name...</h2>
               <br />
               <form id="city-search">
                 <button id="current-input">Current</button>
                 <input type="submit" value="search" id="click" />
-                <input type="text" placeholder="Type City" id="text-input" />
+                <input
+                  type="text"
+                  placeholder="Type a City ..."
+                  id="search-input"
+                  autocomplete="off"
+                />
               </form>
             </div>
           </div>

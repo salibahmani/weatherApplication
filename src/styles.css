@@ -1,5 +1,5 @@
 body {
-  background-color: antiquewhite;
+  background-color: lightgrey;
   height: 100vh;
   margin: 0 auto;
 }
@@ -35,25 +35,44 @@ body {
 }
 .location {
   color: #f9f9f9;
-  position: relative;
-  top: 220px;
   text-align: left;
 }
-.location h1 {
-  font-size: 70px;
+#temp-input {
   padding-left: 2cm;
+  font-size: 50px;
+  bottom: -200px;
+  position: relative;
 }
 
-#cel-input {
-  font-size: 30px;
+#units {
+  padding-left: 0cm;
+  font-size: 20px;
+  bottom: -160px;
+  position: relative;
 }
-.location h2 {
+.active {
+  text-decoration: none;
+  color: #181d31;
+  cursor: default;
+}
+.active:hover {
+  text-decoration: none;
+}
+#city-input {
   font-size: 20px;
   padding-left: 2cm;
+  bottom: -200px;
+  position: relative;
 }
+#far-link {
+  text-decoration: none;
+}
+
 #city-search {
   font-size: 16px;
   padding-left: 2cm;
+  bottom: -200px;
+  position: relative;
 }
 #current-input {
   background-color: #181d31;
