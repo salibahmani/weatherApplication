@@ -37,7 +37,8 @@ function formatDate(timestamp) {
   let month = months[date.getMonth()];
   return `${day} <br> ${hours}:${minutes} <br> ${month} ${currentDate} ${year} `;
 }
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data);
   let forecastElement = document.querySelector("#forecast");
   let days = ["Wednesday", "Thursday", "Friday", "Saturday"];
   let forecastHTML = "";
@@ -57,6 +58,11 @@ function displayForecast() {
   });
   forecastElement.innerHTML = forecastHTML;
 }
+function getForecast(coordinates) {
+  let apiKey = "6ebf1fd302c34c7c63a23fa2744258to";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
 function displayUnit(response) {
   let tempElement = document.querySelector("#temp-input");
   let humidityElement = document.querySelector("#humidity-input");
@@ -65,21 +71,22 @@ function displayUnit(response) {
   let descriptionElement = document.querySelector("#description-input");
   let timeElement = document.querySelector("#time-input");
   let iconElement = document.querySelector("#currentIcon");
-  celsiusTemp = response.data.main.temp;
+  celsiusTemp = response.data.temperature.current;
   tempElement.innerHTML = Math.round(celsiusTemp);
-  humidityElement.innerHTML = response.data.main.humidity;
+  humidityElement.innerHTML = response.data.temperature.humidity;
   windElement.innerHTML = Math.round(response.data.wind.speed);
-  cityElement.innerHTML = response.data.name;
-  descriptionElement.innerHTML = response.data.weather[0].description;
-  timeElement.innerHTML = formatDate(response.data.dt * 1000);
+  cityElement.innerHTML = response.data.city;
+  descriptionElement.innerHTML = response.data.condition.description;
+  timeElement.innerHTML = formatDate(response.data.time * 1000);
   iconElement.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
+  getForecast(response.data.coordinates);
 }
 function search(city) {
-  let apiKey = "167d3b3db5a41bc679736dbad293cba1";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  let apiKey = "6ebf1fd302c34c7c63a23fa2744258to";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayUnit);
 }
 
@@ -113,4 +120,3 @@ farLink.addEventListener("click", displayFartemp);
 let celLink = document.querySelector("#cel-link");
 celLink.addEventListener("click", displayceltemp);
 search("Mashhad");
-displayForecast();
