@@ -37,24 +37,50 @@ function formatDate(timestamp) {
   let month = months[date.getMonth()];
   return `${day} <br> ${hours}:${minutes} <br> ${month} ${currentDate} ${year} `;
 }
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = [
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+    "Monday",
+  ];
+  return days[day];
+}
 function displayForecast(response) {
-  console.log(response.data);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
-  let days = ["Wednesday", "Thursday", "Friday", "Saturday"];
+
   let forecastHTML = "";
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div
-    class="card border-light mb-3"
-    style="max-width: 15rem; max-height: 9rem"
-  >
-    <div class="card-header">4°C</div>
-    <div class="card-body">
-      <h5 class="card-title">${day}</h5>
-      <p class="card-text">🌦️</p>
-    </div>
-  </div>`;
+  forecast.forEach(function (forecastday, index) {
+    if (index < 4) {
+      forecastHTML =
+        forecastHTML +
+        `<div
+  class="card border-light mb-3"
+  style="max-width: 15rem; max-height: 8rem"
+  id="forecast-weather"
+>
+  <div class="card-header">
+    <span id="forecast-weather-max-temp">${Math.round(
+      forecastday.temperature.maximum
+    )}°</span>
+        <span id="forecast-weather-min-temp">${Math.round(
+          forecastday.temperature.minimum
+        )}°</span>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title" id="weekDays">${formatDay(forecastday.time)}</h5>
+    <p class="card-text" id="weekdaye-icon" ><img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+      forecastday.condition.icon
+    }.png" width=50></p>
+  </div>
+</div>
+`;
+    }
   });
   forecastElement.innerHTML = forecastHTML;
 }

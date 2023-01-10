@@ -38,16 +38,16 @@ body {
   text-align: left;
 }
 #temp-input {
-  padding-left: 2cm;
+  padding-left: 1cm;
   font-size: 50px;
-  bottom: -200px;
+  bottom: -280px;
   position: relative;
 }
 
 #units {
   padding-left: 0cm;
   font-size: 20px;
-  bottom: -160px;
+  bottom: -250px;
   position: relative;
 }
 .active {
@@ -60,8 +60,8 @@ body {
 }
 #city-input {
   font-size: 20px;
-  padding-left: 2cm;
-  bottom: -200px;
+  padding-left: 1cm;
+  bottom: -270px;
   position: relative;
 }
 #far-link {
@@ -70,8 +70,8 @@ body {
 
 #city-search {
   font-size: 16px;
-  padding-left: 2cm;
-  bottom: -200px;
+  padding-left: 1cm;
+  bottom: -250px;
   position: relative;
 }
 #current-input {
@@ -96,10 +96,16 @@ body {
   font-size: 15px;
   text-align: left;
   position: relative;
-  top: 270px;
+  top: 300px;
 }
 .source-link {
   display: block;
   margin: 20px auto;
   text-align: center;
+}
+#forecast-weather-max-temp {
+  padding-right: 50px;
+}
+#weekDays {
+  margin-bottom: 0px;
 }
