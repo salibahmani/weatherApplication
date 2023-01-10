@@ -52,7 +52,7 @@ body {
 }
 .active {
   text-decoration: none;
-  color: #181d31;
+  color: white;
   cursor: default;
 }
 .active:hover {

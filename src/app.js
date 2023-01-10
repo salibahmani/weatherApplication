@@ -95,28 +95,8 @@ function hadleSubmit(event) {
   let cityNameElement = document.querySelector("#search-input");
   search(cityNameElement.value);
 }
-function displayFartemp(event) {
-  event.preventDefault();
-  let tempElement = document.querySelector("#temp-input");
-  celLink.classList.remove("active");
-  farLink.classList.add("active");
-  let fartemp = (celsiusTemp * 9) / 5 + 32;
-  tempElement.innerHTML = Math.round(fartemp);
-}
-function displayceltemp(event) {
-  event.preventDefault();
-  let tempElement = document.querySelector("#temp-input");
-  celLink.classList.add("active");
-  farLink.classList.remove("active");
-  tempElement.innerHTML = Math.round(celsiusTemp);
-}
-let celsiusTemp = null;
+
 let searchElement = document.querySelector("#city-search");
 searchElement.addEventListener("submit", hadleSubmit);
 
-let farLink = document.querySelector("#far-link");
-farLink.addEventListener("click", displayFartemp);
-
-let celLink = document.querySelector("#cel-link");
-celLink.addEventListener("click", displayceltemp);
 search("Mashhad");
